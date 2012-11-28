@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>HTML5 fullscreen</title>
+        <script src="fullscreen.js"></script>
+        <script>
+        window.onload = function(){
+        	var toggle = document.getElementById("toggle");
+        	var status = document.getElementById("status");
+        	
+        	document.addEventListener("fullscreenchange", updateScreenState, false);
+			document.addEventListener("mozfullscreenchange", updateScreenState, false);
+			document.addEventListener("webkitfullscreenchange", updateScreenState, false);
+        	
+        	status.innerHTML = "Fullscreen : "+FullScreen.isFullScreen();
+        	
+        	toggle.addEventListener('click', function() { 
+				if(!FullScreen.toggle()){
+					alert("Unable to toggle FullScreen");
+				}
+			}, false); 
+			
+			function updateScreenState(){
+				status.innerHTML = "Fullscreen : "+FullScreen.isFullScreen();
+			}
+        }
+        	
+        </script>
+    </head>
+    <body>
+    	<h1 id="status">
+    		
+    	</h1>
+    	<p>
+    		<button id="toggle">toogle fullscreen</button>
+    	</p>
+    </body>
+</html>
